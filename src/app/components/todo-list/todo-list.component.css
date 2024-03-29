@@ -1,0 +1,53 @@
+.todo-item {
+    display: grid;
+    grid-template-columns: 150px 150px 450px 450px; /* First two columns are 100px wide, last two columns use remaining space */
+    padding: 10px;
+  }
+  
+  .todo-cell {
+    padding: 5px;
+  }
+  
+  .todo-cell p {
+    margin: 0;
+  }
+  
+  .todo-cell h3 {
+    margin: 5px 0;
+  }
+  
+  .status-cell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-icon {
+    font-size: 20px; /* Adjust size as needed */
+  }
+  
+  .title {
+    padding-left: 10px;
+    margin: 20px 0 0 5px;
+  }
+
+  .todo-name p {
+    display: inline-block; /* Ensure the bounding box wraps around the text */
+    padding: 5px 15px; /* Add padding to create space around the text */
+    border: 1px solid #ccc; /* Add a border for the bounding box */
+    box-shadow: 1px; /* Add a faint shadow */
+    font-weight: bold; /* Make the font bold */
+    border-radius: 2px; /* Add rounded corners */
+    color: blueviolet; /* Set the text color */
+  }
+
+  .invalid-date {
+    display: inline-block; /* Ensure the bounding box wraps around the text */
+    padding: 5px 5px; /* Add padding to create space around the text */
+    box-shadow: 1px; /* Add a faint shadow */
+    font-weight: bold; /* Make the font bold */
+    border-radius: 2px; /* Add rounded corners */
+    background-color: darkred; /* Set the text color */
+    color: white; /* Set the text color */
+    font-size: small; /* Adjust size as needed */
+  }
+  

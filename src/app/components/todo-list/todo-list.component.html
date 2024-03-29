@@ -1,17 +1,42 @@
-<div *ngIf="todos.length > 0; else loading">
-    <h2>Todo List</h2>
-    <ul>
-      <li *ngFor="let todo of todos">
-        <h3>{{ todo.Name }}</h3>
-        <p>Description: {{ todo.Description }}</p>
-        <p>Status: {{ todo.Done ? 'Completed' : 'Pending' }}</p>
-        <p>Expenses: {{ todo.Expenses }}</p>
-        <p>Created: {{ todo.Created | date}}</p>
-      </li>
-    </ul>
+<div *ngIf="todos.length > 0; else loading" class="todo-table">
+  <h2 class="title">List</h2>
+  <div class="todo-item">
+    <div class="todo-cell">
+      <h3>Done</h3>
+    </div>
+    <div class="todo-cell">
+      <h3>Id</h3>
+    </div>
+    <div class="todo-cell">
+      <h3>Name</h3>
+    </div>
+    <div class="todo-cell">
+      <h3>Created date</h3>
+    </div>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading TODO list...</p>
-  </ng-template>
-  
+  <div class="todo-item" *ngFor="let todo of todos" (click)="navigateToTodoDetails(todo.Id)" style="cursor: pointer;">
+    <div class="todo-cell">
+      <!-- Use Font Awesome icons -->
+      <!-- Using CSS to apply color to Check-Mark only, did not work, so used Inline stile for now -->
+      <span class="status-icon" [ngClass]="{'fa-solid fa-square-check': todo.Done, 'fa-regular fa-square': !todo.Done}" [style.color]="todo.Done ? 'blueviolet' : 'inherit'"></span>
+    </div>
+    <div class="todo-cell">
+      <p>{{ todo.Id }}</p>
+    </div>
+    <div class="todo-cell todo-name">
+      <!-- Click event removed from here -->
+      <p>{{ todo.Name }}</p>
+    </div>
+    <div class="todo-cell created-column">
+      <p [ngClass]="{'invalid-date': !isValidDate(todo.Created)}">
+        {{ isValidDate(todo.Created) ? (todo.Created | date: 'MM/dd/yyyy') : 'Invalid date' }}
+      </p>
+    </div>
+    
+    
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading TODO list...</p>
+</ng-template>
