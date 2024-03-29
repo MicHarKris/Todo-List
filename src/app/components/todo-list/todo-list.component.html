@@ -2,29 +2,29 @@
   <h2 class="title">List</h2>
   <div class="todo-item">
     <div class="todo-cell">
-      <h3>Done</h3>
+      <p class="subtitle">Done</p>
     </div>
     <div class="todo-cell">
-      <h3>Id</h3>
+      <p class="subtitle">Id</p>
     </div>
     <div class="todo-cell">
-      <h3>Name</h3>
+      <p class="subtitle">Name</p>
     </div>
     <div class="todo-cell">
-      <h3>Created date</h3>
+      <p class="subtitle">Created date</p>
     </div>
   </div>
   <div class="todo-item" *ngFor="let todo of todos" (click)="navigateToTodoDetails(todo.Id)" style="cursor: pointer;">
     <div class="todo-cell">
-      <!-- Use Font Awesome icons -->
-      <!-- Using CSS to apply color to Check-Mark only, did not work, so used Inline stile for now -->
-      <span class="status-icon" [ngClass]="{'fa-solid fa-square-check': todo.Done, 'fa-regular fa-square': !todo.Done}" [style.color]="todo.Done ? 'blueviolet' : 'inherit'"></span>
+      <span class="status-icon" [ngClass]="{'status-icon-done': todo.Done}">
+        <i class="fa-solid fa-square-check" *ngIf="todo.Done"></i>
+        <i class="fa-regular fa-square" *ngIf="!todo.Done"></i>
+      </span>
     </div>
     <div class="todo-cell">
       <p>{{ todo.Id }}</p>
     </div>
     <div class="todo-cell todo-name">
-      <!-- Click event removed from here -->
       <p>{{ todo.Name }}</p>
     </div>
     <div class="todo-cell created-column">

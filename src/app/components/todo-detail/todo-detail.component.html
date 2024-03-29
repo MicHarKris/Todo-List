@@ -1,12 +1,58 @@
-<!-- <div *ngIf="todo">
-    <h2>Todo Detail</h2>
-    <p><strong>Name:</strong> {{ todo.name }}</p>
-    <p><strong>Description:</strong> {{ todo.description }}</p>
-    <p><strong>Status:</strong> {{ todo.done ? 'Completed' : 'Pending' }}</p>
-    <p><strong>Expenses:</strong> {{ todo.expenses }}</p>
-    <p><strong>Created:</strong> {{ todo.created }}</p>
+<div *ngIf="todo" class="todo-details">
+  <h2 class="title">Details</h2>
+
+  <div class="todo-task">
+    <p class="todo-name">
+      {{ todo.Name }}
+    </p>
+    <p 
+      class="todo-done"
+      [ngClass]="{ 'is-done': todo.Done, 'not-done': !todo.Done }"
+    >
+      {{ todo.Done ? "Todo is done" : "Todo is NOT done" }}
+    </p>
   </div>
-  <div *ngIf="!todo"> -->
-    <p>Loading TODO details...</p>
-  <!-- </div> -->
-  
+
+  <p class="todo-desc">
+    {{ todo.Description }}
+  </p>
+
+  <div class="todo-numbers">
+    <p>
+      <strong>Id</strong>
+      <span class="todo-id">{{ todo.Id }}</span>
+    </p>
+    <p>
+      <strong>Expenses</strong>
+      <span class="todo-expenses">{{ todo.Expenses | number:'1.2-2' }}</span>
+    </p>
+    <p>
+      <strong>Created date</strong>
+      <span
+        class="todo-date"
+        [ngClass]="{ 'invalid-date': !isValidDate(todo.Created) }"
+      >
+        {{
+          isValidDate(todo.Created)
+            ? (todo.Created | date : "MM/dd/yyyy")
+            : "Invalid date"
+        }}
+      </span>
+    </p>
+    <p>
+      <strong>Days old</strong>
+      <span
+        class="todo-age"
+        [ngClass]="{ 'invalid-date': !isValidDate(todo.Created) }"
+        >{{
+          isValidDate(todo.Created) ? getDaysOld(todo.Created) : "Age unknown"
+        }}</span
+      >
+    </p>
+  </div>
+
+</div>
+
+<div *ngIf="!todo">
+  <p>Loading TODO details...</p>
+</div>

@@ -24,10 +24,19 @@
   .status-icon {
     font-size: 20px; /* Adjust size as needed */
   }
+
+  .status-icon-done {
+    color: blueviolet;
+  }
   
   .title {
     padding-left: 10px;
     margin: 20px 0 0 5px;
+  }
+
+  .subtitle {
+    padding-top: 10px;
+    font-size:larger;
   }
 
   .todo-name p {
