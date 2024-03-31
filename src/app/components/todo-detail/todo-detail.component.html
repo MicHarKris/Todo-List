@@ -1,11 +1,16 @@
 <div class="todo-frame">
+  <!-- Display todo details if todo exists -->
   <div *ngIf="todo" class="todo-details">
+    <!-- Title -->
     <h2 class="title">Details</h2>
 
+    <!-- Task name and status -->
     <div class="todo-task">
-        <p class="subtitle">
-          {{ todo.Name }}
-        </p>
+      <!-- Task name -->
+      <p class="subtitle">
+        {{ todo.Name }}
+      </p>
+      <!-- Task status -->
       <p
         class="todo-done"
         [ngClass]="{ 'is-done': todo.Done, 'not-done': !todo.Done }"
@@ -14,21 +19,26 @@
       </p>
     </div>
 
+    <!-- Description -->
     <p class="todo-desc">
       {{ todo.Description }}
     </p>
 
+    <!-- Todo details -->
     <div class="todo-numbers">
+      <!-- Todo ID -->
       <p>
         <strong>Id</strong>
         <span class="todo-id">{{ todo.Id }}</span>
       </p>
+      <!-- Expenses -->
       <p>
         <strong>Expenses</strong>
         <span class="todo-expenses">{{
           todo.Expenses | number : "1.2-2"
         }}</span>
       </p>
+      <!-- Created date -->
       <p>
         <strong>Created date</strong>
         <span
@@ -42,6 +52,7 @@
           }}
         </span>
       </p>
+      <!-- Days old -->
       <p>
         <strong>Days old</strong>
         <span
@@ -55,9 +66,11 @@
     </div>
   </div>
 
+  <!-- Display loading message if todo is not available -->
   <div *ngIf="!todo">
     <p>Loading TODO details...</p>
   </div>
 
+  <!-- Button to navigate back to the todo list -->
   <button (click)="navigateToTodoList()">Back to list</button>
 </div>

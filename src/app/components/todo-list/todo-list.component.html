@@ -1,7 +1,9 @@
 <div class="todo-frame">
+  <!-- Display the todo list if todos array has elements, otherwise show loading message -->
   <div *ngIf="todos.length > 0; else loading" class="todo-list">
     <h2 class="title">List</h2>
-   
+
+    <!-- Header row -->
     <div class="todo-item">
       <div class="todo-cell">
         <p class="subtitle">Done</p>
@@ -20,13 +22,14 @@
       </div>
     </div>
 
+    <!-- Iterate over todos array to display each todo item -->
     <div
       class="todo-item"
       *ngFor="let todo of todos"
       (click)="navigateToTodoDetails(todo.Id)"
       style="cursor: pointer"
     >
-
+      <!-- Display status icon -->
       <div class="todo-cell">
         <span class="status-icon" [ngClass]="{ 'status-icon-done': todo.Done }">
           <i class="fa-solid fa-square-check" *ngIf="todo.Done"></i>
@@ -34,14 +37,17 @@
         </span>
       </div>
 
+      <!-- Display todo ID -->
       <div class="todo-cell">
         <p>{{ todo.Id }}</p>
       </div>
 
+      <!-- Display todo name -->
       <div class="todo-cell todo-name">
         <p>{{ todo.Name }}</p>
       </div>
 
+      <!-- Display created date with conditional styling for invalid date -->
       <div class="todo-cell created-column">
         <p [ngClass]="{ 'invalid-date': !isValidDate(todo.Created) }">
           {{
@@ -53,9 +59,13 @@
       </div>
     </div>
   </div>
-  
-  <button (click)="navigateToTodoNew()" class="new-todo-button">New Todo Item</button>
 
+  <!-- Button to navigate to create new todo page -->
+  <button (click)="navigateToTodoNew()" class="new-todo-button">
+    New Todo Item
+  </button>
+
+  <!-- Loading template to display while fetching todo list -->
   <ng-template #loading>
     <p>Loading TODO list...</p>
   </ng-template>

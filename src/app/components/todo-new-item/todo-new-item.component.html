@@ -1,7 +1,11 @@
+<!-- Todo Form Frame -->
 <div class="todo-frame">
+  <!-- Title -->
   <h2 class="title">New Todo Item</h2>
+
+  <!-- Todo Form -->
   <form [formGroup]="newTodoForm" (ngSubmit)="onSubmit()" class="todo-form">
-    
+    <!-- Name Field -->
     <div class="todo-item">
       <label for="name" class="subtitle">Name:</label>
       <input
@@ -12,9 +16,20 @@
         placeholder="Enter name..."
         class="todo-field"
       />
-      
+
+      <!-- Error message for required field -->
+      <p
+        class="todo-required"
+        *ngIf="
+          newTodoForm.get('Name')?.invalid &&
+          (newTodoForm.get('Name')?.dirty || newTodoForm.get('Name')?.touched)
+        "
+      >
+        Name is required.
+      </p>
     </div>
 
+    <!-- Description Field -->
     <div class="todo-item">
       <label for="description" class="subtitle">Description:</label>
       <textarea
@@ -26,6 +41,7 @@
       ></textarea>
     </div>
 
+    <!-- Expenses Field -->
     <div class="todo-item">
       <label for="expenses" class="subtitle">Expenses:</label>
       <input
@@ -35,8 +51,33 @@
         placeholder="Enter expenses..."
         class="todo-field"
       />
+
+      <!-- Error message for required field -->
+      <p
+        class="todo-required"
+        *ngIf="
+          newTodoForm.get('Expenses')?.invalid &&
+          (newTodoForm.get('Expenses')?.dirty ||
+            newTodoForm.get('Expenses')?.touched)
+        "
+      >
+        Expenses must be a number.
+      </p>
     </div>
-    
-    <button type="submit" [disabled]="!newTodoForm.valid">Submit</button>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      [disabled]="!newTodoForm.valid"
+      [ngClass]="{
+        'enabled-button': newTodoForm.valid,
+        'disabled-button': !newTodoForm.valid
+      }"
+    >
+      Submit
+    </button>
+
+    <!-- Back to list Button -->
+    <button (click)="navigateToTodoList()">Back to list</button>
   </form>
 </div>

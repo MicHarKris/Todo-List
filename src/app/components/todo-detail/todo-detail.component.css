@@ -1,3 +1,4 @@
+/* Style for each todo task */
 .todo-task {
   margin: 25px 0px 0px 0px;
   display: flex;
@@ -5,36 +6,42 @@
   padding-left: 10px;
 }
 
+/* Style for done status */
 .todo-done {
-    display: inline-block;
-    padding: 5px 5px;
-    margin: 10px 0px 0px 0px;
-    font-weight: bold;
-    border-radius: 2px;
-    margin-left: 20px;
-    color: white;
-    font-size: small;
+  display: inline-block;
+  padding: 5px 5px;
+  margin: 10px 0px 0px 0px;
+  font-weight: bold;
+  border-radius: 2px;
+  margin-left: 20px;
+  color: white;
+  font-size: small;
 }
 
+/* Style for not done status */
 .not-done {
-    background-color: darkred;
+  background-color: darkred;
 }
 
+/* Style for done status */
 .is-done {
-    background-color: green;
+  background-color: green;
 }
 
+/* Style for todo description */
 .todo-desc {
   margin: 5px 0px 0px 0px;
   padding-left: 10px;
 }
 
+/* Define grid layout for todo numbers */
 .todo-numbers {
   display: grid;
   grid-template-columns: 100px 200px 300px 300px;
   padding: 10px;
 }
 
+/* Style for todo ID */
 .todo-id,
 .todo-expenses,
 .todo-date,
@@ -42,6 +49,7 @@
   padding: 10px;
 }
 
+/* Style for invalid date */
 .invalid-date {
   display: inline-block;
   padding: 5px 5px;

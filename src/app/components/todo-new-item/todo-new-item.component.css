@@ -1,24 +1,42 @@
+/* Define grid layout for todo items */
 .todo-item {
   display: grid;
-  grid-template-columns: 150px 900px;
+  grid-template-columns: 150px 900px; /* Two columns with specified widths */
   padding: 10px;
 }
 
-.todo-form{
+/* Add margin-top to todo form */
+.todo-form {
   margin-top: 15px;
 }
 
+/* Style for input fields and textareas */
 .todo-field {
   margin: 5px 0;
   padding: 5px;
-  resize: vertical;
+  resize: vertical; /* Allow vertical resizing for textareas */
   width: 100%;
 }
 
+/* Hide placeholder text when field is focused */
 .todo-field:focus::placeholder {
   color: transparent;
 }
 
+/* Style for error messages in required fields */
+.todo-required {
+  color: red;
+}
+
+/* Define custom styles for disabled button */
+button:disabled {
+  color: grey;
+  background-color: lightgrey;
+  border-color: lightgrey;
+  opacity: 0.5;
+}
+
+/* Style for text inputs and textareas, to make them uniform */
 input[type="text"],
 textarea {
   font-family: inherit;

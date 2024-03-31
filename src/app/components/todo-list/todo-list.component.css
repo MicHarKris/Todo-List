@@ -1,30 +1,37 @@
+/* Define grid layout for todo items */
 .todo-item {
   display: grid;
-  grid-template-columns: 150px 150px 450px 450px; /* First two columns are 100px wide, last two columns use remaining space */
+  grid-template-columns: 150px 150px 450px 450px; /* First two columns are 150px wide, last two columns use remaining space */
   padding: 10px;
 }
 
+/* Styling for each cell in the todo item */
 .todo-cell {
   padding: 5px;
 }
 
+/* Remove default margin for paragraphs in todo cells */
 .todo-cell p {
   margin: 0;
 }
 
+/* Add margin to headings in todo cells */
 .todo-cell h3 {
   margin: 5px 0;
 }
 
+/* Use flexbox for status cell */
 .status-cell {
   display: flex;
   align-items: center;
 }
 
+/* Style for status icon */
 .status-icon {
-  font-size: 20px; /* Adjust size as needed */
+  font-size: 20px;
 }
 
+/* Change color for done status icon */
 .status-icon-done {
   color: blueviolet;
 }
