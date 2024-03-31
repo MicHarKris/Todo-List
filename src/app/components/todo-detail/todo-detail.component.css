@@ -1,45 +1,38 @@
-.todo-details {
-  padding: 10px;
-}
-
-.title {
-  margin: 0px;
-}
-
 .todo-task {
   margin: 25px 0px 0px 0px;
   display: flex;
   align-items: center;
+  padding-left: 10px;
 }
 
-.todo-name {
-  font-size: larger;
-}
 .todo-done {
     display: inline-block;
     padding: 5px 5px;
-    margin-left: 10px;
-    box-shadow: 1px;
+    margin: 10px 0px 0px 0px;
     font-weight: bold;
     border-radius: 2px;
     margin-left: 20px;
     color: white;
     font-size: small;
 }
+
 .not-done {
     background-color: darkred;
 }
+
 .is-done {
     background-color: green;
 }
 
 .todo-desc {
   margin: 5px 0px 0px 0px;
+  padding-left: 10px;
 }
 
 .todo-numbers {
   display: grid;
   grid-template-columns: 100px 200px 300px 300px;
+  padding: 10px;
 }
 
 .todo-id,

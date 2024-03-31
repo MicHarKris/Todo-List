@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -17,7 +17,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class TodoDetailComponent implements OnInit {
   todo: any;
 
-  constructor(private route: ActivatedRoute, private httpClient: HttpClient) {}
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -47,5 +47,9 @@ export class TodoDetailComponent implements OnInit {
     const today = new Date();
     const difference = today.getTime() - createdDate.getTime();
     return Math.floor(difference / (1000 * 60 * 60 * 24));
+  }
+
+  navigateToTodoList(): void {
+    this.router.navigate(['/todos']);
   }
 }

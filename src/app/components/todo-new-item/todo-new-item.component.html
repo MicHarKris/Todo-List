@@ -1,0 +1,42 @@
+<div class="todo-frame">
+  <h2 class="title">New Todo Item</h2>
+  <form [formGroup]="newTodoForm" (ngSubmit)="onSubmit()" class="todo-form">
+    
+    <div class="todo-item">
+      <label for="name" class="subtitle">Name:</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="Name"
+        required
+        placeholder="Enter name..."
+        class="todo-field"
+      />
+      
+    </div>
+
+    <div class="todo-item">
+      <label for="description" class="subtitle">Description:</label>
+      <textarea
+        id="description"
+        type="text"
+        formControlName="Description"
+        placeholder="Enter description..."
+        class="todo-field"
+      ></textarea>
+    </div>
+
+    <div class="todo-item">
+      <label for="expenses" class="subtitle">Expenses:</label>
+      <input
+        id="expenses"
+        type="text"
+        formControlName="Expenses"
+        placeholder="Enter expenses..."
+        class="todo-field"
+      />
+    </div>
+    
+    <button type="submit" [disabled]="!newTodoForm.valid">Submit</button>
+  </form>
+</div>

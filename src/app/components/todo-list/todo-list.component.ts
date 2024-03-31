@@ -6,9 +6,12 @@ import { Router } from '@angular/router'; // Import Router
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [
+    CommonModule, 
+    HttpClientModule
+  ],
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
   constructor(private httpClient: HttpClient, private router: Router) {} // Inject Router
@@ -20,11 +23,12 @@ export class TodoListComponent implements OnInit {
   }
 
   fetchTodoList() {
-    this.httpClient.get('https://boyumcodechallenge.azurewebsites.net/api/todolist')
-      .subscribe(todoList => {
+    this.httpClient
+      .get('https://boyumcodechallenge.azurewebsites.net/api/todolist')
+      .subscribe((todoList) => {
         this.todos = todoList as any[];
         // Convert 'Created' timestamps to Date objects
-        this.todos.forEach(todo => {
+        this.todos.forEach((todo) => {
           if (typeof todo.Created === 'number') {
             todo.Created = new Date(todo.Created);
           }
@@ -36,8 +40,11 @@ export class TodoListComponent implements OnInit {
     this.router.navigate(['/todo', todoId]);
   }
 
+  navigateToTodoNew(): void {
+    this.router.navigate(['/todo/new']);
+  }
+
   isValidDate(date: any): boolean {
     return date instanceof Date && !isNaN(date.getTime());
   }
-  
 }

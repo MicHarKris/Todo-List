@@ -1,0 +1,28 @@
+.todo-item {
+  display: grid;
+  grid-template-columns: 150px 900px;
+  padding: 10px;
+}
+
+.todo-form{
+  margin-top: 15px;
+}
+
+.todo-field {
+  margin: 5px 0;
+  padding: 5px;
+  resize: vertical;
+  width: 100%;
+}
+
+.todo-field:focus::placeholder {
+  color: transparent;
+}
+
+input[type="text"],
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid #ccc;
+}

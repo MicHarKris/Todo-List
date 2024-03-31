@@ -1,42 +1,62 @@
-<div *ngIf="todos.length > 0; else loading" class="todo-table">
-  <h2 class="title">List</h2>
-  <div class="todo-item">
-    <div class="todo-cell">
-      <p class="subtitle">Done</p>
-    </div>
-    <div class="todo-cell">
-      <p class="subtitle">Id</p>
-    </div>
-    <div class="todo-cell">
-      <p class="subtitle">Name</p>
-    </div>
-    <div class="todo-cell">
-      <p class="subtitle">Created date</p>
-    </div>
-  </div>
-  <div class="todo-item" *ngFor="let todo of todos" (click)="navigateToTodoDetails(todo.Id)" style="cursor: pointer;">
-    <div class="todo-cell">
-      <span class="status-icon" [ngClass]="{'status-icon-done': todo.Done}">
-        <i class="fa-solid fa-square-check" *ngIf="todo.Done"></i>
-        <i class="fa-regular fa-square" *ngIf="!todo.Done"></i>
-      </span>
-    </div>
-    <div class="todo-cell">
-      <p>{{ todo.Id }}</p>
-    </div>
-    <div class="todo-cell todo-name">
-      <p>{{ todo.Name }}</p>
-    </div>
-    <div class="todo-cell created-column">
-      <p [ngClass]="{'invalid-date': !isValidDate(todo.Created)}">
-        {{ isValidDate(todo.Created) ? (todo.Created | date: 'MM/dd/yyyy') : 'Invalid date' }}
-      </p>
-    </div>
-    
-    
-  </div>
-</div>
+<div class="todo-frame">
+  <div *ngIf="todos.length > 0; else loading" class="todo-list">
+    <h2 class="title">List</h2>
+   
+    <div class="todo-item">
+      <div class="todo-cell">
+        <p class="subtitle">Done</p>
+      </div>
 
-<ng-template #loading>
-  <p>Loading TODO list...</p>
-</ng-template>
+      <div class="todo-cell">
+        <p class="subtitle">Id</p>
+      </div>
+
+      <div class="todo-cell">
+        <p class="subtitle">Name</p>
+      </div>
+
+      <div class="todo-cell">
+        <p class="subtitle">Created date</p>
+      </div>
+    </div>
+
+    <div
+      class="todo-item"
+      *ngFor="let todo of todos"
+      (click)="navigateToTodoDetails(todo.Id)"
+      style="cursor: pointer"
+    >
+
+      <div class="todo-cell">
+        <span class="status-icon" [ngClass]="{ 'status-icon-done': todo.Done }">
+          <i class="fa-solid fa-square-check" *ngIf="todo.Done"></i>
+          <i class="fa-regular fa-square" *ngIf="!todo.Done"></i>
+        </span>
+      </div>
+
+      <div class="todo-cell">
+        <p>{{ todo.Id }}</p>
+      </div>
+
+      <div class="todo-cell todo-name">
+        <p>{{ todo.Name }}</p>
+      </div>
+
+      <div class="todo-cell created-column">
+        <p [ngClass]="{ 'invalid-date': !isValidDate(todo.Created) }">
+          {{
+            isValidDate(todo.Created)
+              ? (todo.Created | date : "MM/dd/yyyy")
+              : "Invalid date"
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <button (click)="navigateToTodoNew()" class="new-todo-button">New Todo Item</button>
+
+  <ng-template #loading>
+    <p>Loading TODO list...</p>
+  </ng-template>
+</div>
