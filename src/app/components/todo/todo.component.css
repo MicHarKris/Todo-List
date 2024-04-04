@@ -1,0 +1,155 @@
+/* Todo List Styling */
+/*  */
+/* Define grid layout for todo items */
+.todo-item {
+  display: grid;
+  grid-template-columns: 150px 150px 450px 450px; /* First two columns are 150px wide, last two columns use remaining space */
+  padding: 10px;
+}
+
+/* Styling for each cell in the todo item */
+.todo-cell {
+  padding: 5px;
+}
+
+/* Remove default margin for paragraphs in todo cells */
+.todo-cell p {
+  margin: 0;
+}
+
+/* Add margin to headings in todo cells */
+.todo-cell h3 {
+  margin: 5px 0;
+}
+
+/* Use flexbox for status cell */
+.status-cell {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for status icon */
+.status-icon {
+  font-size: 20px;
+}
+
+/* Change color for done status icon */
+.status-icon-done {
+  color: blueviolet;
+}
+
+/* Todo Detail Styling */
+/*  */
+/* Style for each todo task */
+.todo-task {
+  margin: 25px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* Style for done status */
+.todo-done {
+  display: inline-block;
+  padding: 5px 5px;
+  margin: 10px 0px 0px 0px;
+  font-weight: bold;
+  border-radius: 2px;
+  margin-left: 20px;
+  color: white;
+  font-size: small;
+}
+
+/* Style for not done status */
+.not-done {
+  background-color: darkred;
+}
+
+/* Style for done status */
+.is-done {
+  background-color: green;
+}
+
+/* Style for todo description */
+.todo-desc {
+  margin: 5px 0px 0px 0px;
+  padding-left: 10px;
+}
+
+/* Define grid layout for todo numbers */
+.todo-numbers {
+  display: grid;
+  grid-template-columns: 100px 200px 300px 300px;
+  padding: 10px;
+}
+
+/* Style for todo ID */
+.todo-id,
+.todo-expenses,
+.todo-date,
+.todo-age {
+  padding: 10px;
+}
+
+/* Style for invalid date */
+.invalid-date {
+  display: inline-block;
+  padding: 5px 5px;
+  margin-left: 10px;
+  box-shadow: 1px;
+  font-weight: bold;
+  border-radius: 2px;
+  background-color: darkred;
+  color: white;
+  font-size: small;
+}
+
+/* Todo New Styling */
+/*  */
+/* Define grid layout for todo items */
+.todo-new-item {
+  display: grid;
+  grid-template-columns: 150px 900px; /* Two columns with specified widths */
+  padding: 10px;
+}
+
+/* Add margin-top to todo form */
+.todo-form {
+  margin-top: 15px;
+}
+
+/* Style for input fields and textareas */
+.todo-field {
+  margin: 5px 0;
+  padding: 5px;
+  resize: vertical; /* Allow vertical resizing for textareas */
+  width: 100%;
+}
+
+/* Hide placeholder text when field is focused */
+.todo-field:focus::placeholder {
+  color: transparent;
+}
+
+/* Style for error messages in required fields */
+.todo-required {
+  color: red;
+}
+
+/* Define custom styles for disabled button */
+button:disabled {
+  color: grey;
+  background-color: lightgrey;
+  border-color: lightgrey;
+  opacity: 0.5;
+}
+
+/* Style for text inputs and textareas, to make them uniform */
+input[type="text"],
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid #ccc;
+}
+

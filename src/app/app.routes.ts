@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { TodoComponent } from './components/todo/todo.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
 import { TodoNewItemComponent } from './components/todo-new-item/todo-new-item.component';
@@ -9,6 +10,12 @@ const routeConfig: Routes = [
     path: '',
     redirectTo: '/todos',
     pathMatch: 'full',
+  },
+  // Route to the todo standalone component
+  {
+    path: 'list',
+    component: TodoComponent,
+    title: 'Todo',
   },
   // Route to the todo list
   {
@@ -33,6 +40,7 @@ const routeConfig: Routes = [
     path: '**',
     redirectTo: '/todos',
   },
+
 ];
 
 export default routeConfig;
