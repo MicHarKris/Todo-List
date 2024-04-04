@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-detail',
@@ -11,36 +13,45 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./todo-detail.component.css'],
 })
 export class TodoDetailComponent implements OnInit {
-  todo: any; // Variable to hold the todo item
-
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient,
     private router: Router
   ) {}
 
+  todo$: Observable<any> = new Observable<any>(); // Observable to hold the todo item
+
   ngOnInit(): void {
-    // Subscribe to route parameter changes to fetch todo details
-    this.route.paramMap.subscribe((paramMap) => {
-      const todoId = paramMap.get('id'); // Get todo ID from route parameter
-      if (todoId) {
-        this.fetchTodoDetail(+todoId); // Convert todo ID to number and fetch todo detail
-      }
-    });
+    // Fetch todo details based on route parameter
+    this.todo$ = this.route.paramMap.pipe(
+      map(paramMap => paramMap.get('id')), // Extract todo ID from route parameter
+      switchMap(todoId => {
+        if (todoId) {
+          // Convert todo ID to number and fetch todo detail
+          return this.fetchTodoDetail(+todoId);
+        } else {
+          // If todo ID is not provided, return an empty observable
+          return new Observable<any>();
+        }
+      })
+    );
   }
 
   // Fetch todo detail by ID
-  fetchTodoDetail(id: number): void {
-    this.httpClient
+  fetchTodoDetail(id: number): Observable<any> {
+    return this.httpClient
       .get<any[]>('https://boyumcodechallenge.azurewebsites.net/api/todolist')
-      .subscribe((todoList) => {
-        // Find the todo item with matching ID
-        this.todo = todoList.find((todo) => todo.Id === id);
-        // Convert 'Created' timestamp to Date object if exists
-        if (this.todo && typeof this.todo.Created === 'number') {
-          this.todo.Created = new Date(this.todo.Created);
-        }
-      });
+      .pipe(
+        map(todoList => {
+          // Find the todo item with matching ID
+          const todo = todoList.find(todo => todo.Id === id);
+          // Convert 'Created' timestamp to Date object if exists
+          if (todo && typeof todo.Created === 'number') {
+            todo.Created = new Date(todo.Created);
+          }
+          return todo;
+        })
+      );
   }
 
   // Check if the input is a valid Date object

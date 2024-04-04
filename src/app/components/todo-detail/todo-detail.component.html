@@ -1,6 +1,6 @@
 <div class="todo-frame">
   <!-- Display todo details if todo exists -->
-  <div *ngIf="todo" class="todo-details">
+  <div *ngIf="(todo$ | async) as todo" class="todo-details">
     <!-- Title -->
     <h2 class="title">Details</h2>
 
@@ -67,7 +67,7 @@
   </div>
 
   <!-- Display loading message if todo is not available -->
-  <div *ngIf="!todo">
+  <div *ngIf="!(todo$ | async)">
     <p>Loading TODO details...</p>
   </div>
 

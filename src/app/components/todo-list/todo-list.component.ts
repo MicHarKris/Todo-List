@@ -1,39 +1,40 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router'; // Import Router
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-list',
-  standalone: true, // Standalone mode
+  standalone: true,
   imports: [CommonModule, HttpClientModule],
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
-  constructor(private httpClient: HttpClient, private router: Router) {} // Inject Router
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
-  todos: any[] = []; // Array to store todos
+  todos$!: Observable<any[]>; // Observable to hold the todo list
 
   ngOnInit(): void {
-    this.fetchTodoList(); // Fetch todo list on component initialization
+    this.todos$ = this.fetchTodoList(); // Fetch todo list on component initialization
   }
 
-  fetchTodoList() {
-    // Fetch todo list from API
-    this.httpClient
-      .get('https://boyumcodechallenge.azurewebsites.net/api/todolist')
-      .subscribe((todoList) => {
-        // Store fetched todo list
-        this.todos = todoList as any[];
-
-        // Convert 'Created' timestamps to Date objects
-        this.todos.forEach((todo) => {
-          if (typeof todo.Created === 'number') {
-            todo.Created = new Date(todo.Created);
-          }
-        });
-      });
+  fetchTodoList(): Observable<any[]> {
+    return this.httpClient
+      .get<any[]>('https://boyumcodechallenge.azurewebsites.net/api/todolist')
+      .pipe(
+        map(todoList => {
+          // Convert 'Created' timestamps to Date objects
+          todoList.forEach(todo => {
+            if (typeof todo.Created === 'number') {
+              todo.Created = new Date(todo.Created);
+            }
+          });
+          return todoList;
+        })
+      );
   }
 
   // Navigate to todo details page
