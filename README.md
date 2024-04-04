@@ -6,4 +6,6 @@ I used a multi-component approach and navigate between the using Routing. This i
 - I can see that a single-compont solution, with elements being rendered as 'Modes' that are shifted between, could just as well be implemented, but found that this was more representative of my experience and the method intuitively implemented.
 
 # Comments
-I have implemented none of the 'Nice to haves' described in the Challenge description, as they lie outside of my current skillset, but I will look into each of the concepts, so perhaps we can talk about how they would be relevant, when we have the technical interview?
+I have implemented the RxJS asynchronous behaviour around the API Fetch, in order to make the website more user friendly in case of a delay or error in accessing the API.
+I have also experimented, although somewhat haphazardly, with the Storybook method of displaying components, although I think some radical restructuring of the project might be necessary for that method to have any value, so I have kept it as is, in that regard, for now.
+The Jest Unit Tests are something I have now researched and tried to gain some insights in, but am still a bit of way from seeing how I would implement them meaningfully in this project.
